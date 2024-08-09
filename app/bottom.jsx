@@ -11,12 +11,14 @@ import Chatroom from "../screens/Chatroom";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const ChatBox = () => {
   const [matches, setMatches] = useState([]);
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState("");
+  const navigation = useNavigation();
   const fetchData = async () => {
     try {
       const [likesResponse, matchesResponse] = await Promise.all([
@@ -71,7 +73,11 @@ const ChatBox = () => {
             <View
               style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
             >
-              <Ionicons name="arrow-back" size={24} />
+              <Ionicons
+                onPress={() => navigation.navigate("chart")}
+                name="arrow-back"
+                size={24}
+              />
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
               >
